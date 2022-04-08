@@ -2,7 +2,7 @@
 /**
  * main - main block
  * Description: Use `putchar` function to print the alphabet in lowercase.
- * Return: 0 on success
+ * Return: 0
  */
 int main(void)
 {
@@ -14,5 +14,6 @@ int main(void)
 		c++;
 	}
 	putchar('\n');
+
 	return (0);
 }

@@ -1,5 +1,3 @@
-#include <stdlib.h>
-#include <time.h>
 #include <stdio.h>
 /**
  * main - main block
@@ -10,7 +8,7 @@ int main(void)
 {
 	char i;
 	
-	for (i = 'a'; i <= 'z'; z++)
+	for (i = 'a'; i <= 'z'; i++)
 	{
 		putchar(i);
 	}

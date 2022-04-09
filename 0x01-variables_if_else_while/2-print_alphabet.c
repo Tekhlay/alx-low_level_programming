@@ -1,8 +1,8 @@
 #include <stdio.h>
 /**
- * main - main block
- * Description: Use `putchar` function to print the alphabet in lowercase.
- * Return: 0
+ * main - prints the alphabet in lowercase.
+(*
+ * Return: 0 on success
  */
 int main(void)
 {
@@ -14,6 +14,5 @@ int main(void)
 		c++;
 	}
 	putchar('\n');
-
 	return (0);
 }

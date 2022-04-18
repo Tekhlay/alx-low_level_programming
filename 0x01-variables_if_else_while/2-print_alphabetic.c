@@ -1,15 +1,19 @@
 #include <stdio.h>
 /**
- * Main print all alphabets in lower case
- * return 0 on success
+ * main - main block
+ * Description: Use `putchar` function to print the alphabet in lowercase.
+ * Return: 0
  */
 int main(void)
 {
-	char i;
-	for (i='a';i<='z';i++)
+	char c = 'a';
+
+	while (c <= 'z')
 	{
-		putchar(i);
+		putchar(c);
+		c++;
 	}
 	putchar('\n');
+
 	return (0);
 }

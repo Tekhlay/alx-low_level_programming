@@ -1,4 +1,4 @@
-#include "MAIN.h"
+#include "main.h"
 #include <stdio.h>
 /**
  * main - print its name

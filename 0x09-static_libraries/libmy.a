@@ -48,7 +48,7 @@ int _strlen(char *s)
 }
 
 3-strcmp.c/     1583092715  1000  1000  100664  304       `
-#include "holberton.h"
+#include "main.h"
 
 /**
  * _strcmp - compare two strings
@@ -72,7 +72,7 @@ int _strcmp(char *s1, char *s2)
 	return (cmp);
 }
 4-strpbrk.c/    1583093064  1000  1000  100664  429       `
-#include "holberton.h"
+#include "main.h"
 #include <stdio.h>
 
 /**

@@ -1,79 +1,87 @@
 #include "variadic_functions.h"
-#include <stdlib.h>
 #include <stdio.h>
-
+#include <stdarg.h>
+#include <stdlib.h>
 /**
- * _printchar - print char type element from va_list
- * @list: va_list passed to function
+ * printf_c - print a character.
+ * @arg_variables: list of arguments.
+ * Return: void
  */
-void _printchar(va_list list)
+void printf_c(va_list arg_variables)
 {
-	printf("%c", va_arg(list, int));
+	printf("%c", va_arg(arg_variables, int));
 }
-
 /**
- * _printstr - print string element from va_list
- * @list: va_list passed to function
+ * printf_i - print an integer.
+ * @arg_variables: arguments
+ * Return: void
  */
-void _printstr(va_list list)
+void printf_i(va_list arg_variables)
 {
-	char *s;
-
-	s = va_arg(list, char *);
-	if (s == NULL)
-		s = "(nil)";
-	printf("%s", s);
+	printf("%i", va_arg(arg_variables, int));
 }
-
 /**
- * _printfloat - print float type element from va_list
- * @list: va_list passed to function
+ * printf_f - print a float.
+ *
+ * @arg_variables: list of arguments.
  */
-void _printfloat(va_list list)
+void printf_f(va_list arg_variables)
 {
-	printf("%f", va_arg(list, double));
+	printf("%f", va_arg(arg_variables, double));
 }
-
 /**
- * _printint - print int type element from va_list
- * @list: va_list passed to function
+ * printf_s - print a string.
+ * @arg_variables: arguments
+ * Return: void
  */
-void _printint(va_list list)
+void printf_s(va_list arg_variables)
 {
-	printf("%d", va_arg(list, int));
-}
+	char *p;
 
+	p = va_arg(arg_variables, char *);
+
+	if (p == NULL)
+	p = "(nil)";
+	printf("%s", p);
+}
 /**
- * print_all - print anything passed if char, int, float, or string.
- * @format: string of formats to use and print
+ * print_all - prints all.
+ * @format: last argument.
+ * Return: void
  */
 void print_all(const char * const format, ...)
 {
-	unsigned int i, j;
-	va_list args;
-	char *sep;
-
-	checker storage[] = {
-		{ "c", _printchar },
-		{ "f", _printfloat },
-		{ "s", _printstr },
-		{ "i", _printint }
-	};
-
-	i = 0;
-	sep = "";
-	va_start(args, format);
-	while (format != NULL && format[i / 4] != '\0')
+	int i = 0;
+	int j = 0;
+	char *sep = "";
+	va_list arg_variables;
+	/*Array of struct containing the different variable types accepted*/
+	variable_type var[] = {
+	{"c", printf_c},
+	{"i", printf_i},
+	{"f", printf_f},
+	{"s", printf_s},
+	{NULL, NULL} };
+	/*Init arg list to retrieve the add arguments after parameter format*/
+	va_start(arg_variables, format);
+	/*test if both pointer and string different than NULL*/
+	j = 0;
+	while (format && format[j])
 	{
-		j = i % 4;
-		if (storage[j].type[0] == format[i / 4])
+		i = 0;
+		while (var[i].character)
 		{
-			printf("%s", sep);
-			storage[j].f(args);
-			sep = ", ";
-		}
+			if (*(format + j) == *(var[i].character))
+			{
+				printf("%s", sep);
+					(var[i].printf)(arg_variables);
+						sep = ", ";
+							break;
+			}
 		i++;
+		}
+		j++;
 	}
 	printf("\n");
-	va_end(args);
+	va_end(arg_variables);
 }
